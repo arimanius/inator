@@ -9,6 +9,9 @@ import edu.arimanius.inator.data.dao.*
 import edu.arimanius.inator.data.entity.*
 import edu.arimanius.inator.util.EnumConverter
 import edu.arimanius.inator.util.TimestampConverter
+import java.time.DayOfWeek
+
+class DayOfWeekConverter : EnumConverter<DayOfWeek>()
 
 @Database(
     entities = [
@@ -24,7 +27,7 @@ import edu.arimanius.inator.util.TimestampConverter
 )
 @TypeConverters(
     TimestampConverter::class,
-    EnumConverter::class,
+    DayOfWeekConverter::class,
 )
 abstract class InatorDatabase : RoomDatabase() {
     abstract fun courseDao(): CourseDao
