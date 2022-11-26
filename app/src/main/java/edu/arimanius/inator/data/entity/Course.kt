@@ -2,6 +2,7 @@ package edu.arimanius.inator.data.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 
 @Entity(
     tableName = "courses",
@@ -19,6 +20,10 @@ import androidx.room.ForeignKey
             childColumns = ["departmentId"],
             onDelete = ForeignKey.CASCADE,
         ),
+    ],
+    indices = [
+        Index(value = ["semesterId"]),
+        Index(value = ["departmentId"]),
     ],
 )
 data class Course(

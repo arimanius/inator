@@ -21,6 +21,8 @@ class DayOfWeekConverter : EnumConverter<DayOfWeek>()
         GroupSchedule::class,
         Instructor::class,
         Semester::class,
+        Program::class,
+        ProgramGroup::class,
     ],
     version = 1,
     exportSchema = false
@@ -36,6 +38,8 @@ abstract class InatorDatabase : RoomDatabase() {
     abstract fun groupScheduleDao(): GroupScheduleDao
     abstract fun instructorDao(): InstructorDao
     abstract fun semesterDao(): SemesterDao
+    abstract fun programDao(): ProgramDao
+    abstract fun programGroupDao(): ProgramGroupDao
 
     companion object {
         @Volatile

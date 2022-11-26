@@ -3,13 +3,17 @@ package edu.arimanius.inator.data.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import androidx.room.PrimaryKey
-import java.time.DayOfWeek
-import java.util.Date
 
 @Entity(
-    tableName = "group_schedules",
+    tableName = "program_groups",
+    primaryKeys = ["programId", "groupId", "courseId", "semesterId"],
     foreignKeys = [
+        ForeignKey(
+            entity = Program::class,
+            parentColumns = ["id"],
+            childColumns = ["programId"],
+            onDelete = ForeignKey.CASCADE,
+        ),
         ForeignKey(
             entity = Group::class,
             parentColumns = ["groupId", "courseId", "semesterId"],
@@ -18,16 +22,13 @@ import java.util.Date
         ),
     ],
     indices = [
+        Index(value = ["programId"]),
         Index(value = ["groupId", "courseId", "semesterId"]),
     ],
 )
-data class GroupSchedule (
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+data class ProgramGroup(
+    val programId: Int,
     val groupId: Int,
     val courseId: Int,
     val semesterId: Int,
-    val dayOfWeek: DayOfWeek,
-    val startTime: Date,
-    val endTime: Date,
 )
