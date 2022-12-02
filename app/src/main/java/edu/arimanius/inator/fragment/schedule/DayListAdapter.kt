@@ -48,7 +48,7 @@ class DayListAdapter(
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         CoroutineScope(Dispatchers.Main).launch {
-            programWeeklyScheduleViewModel.getProgramSchedule(1, currentItem).let {
+            programWeeklyScheduleViewModel.getProgramSchedule(currentItem).let {
                 adapter.setData(it)
             }
         }
