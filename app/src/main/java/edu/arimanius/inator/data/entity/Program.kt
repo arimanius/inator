@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "programs",
     indices = [
-        Index(value = ["name"], unique = true),
+        Index(value = ["name", "semesterId"], unique = true),
         Index(value = ["semesterId"]),
     ],
     foreignKeys = [
