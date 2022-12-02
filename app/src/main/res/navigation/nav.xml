@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/courseList">
+
+    <fragment
+        android:id="@+id/courseList"
+        android:name="edu.arimanius.inator.fragment.course.CourseList"
+        android:label="@string/course_list_label"
+        tools:layout="@layout/fragment_course_list" >
+        <action
+            android:id="@+id/action_courseList_to_weeklySchedule"
+            app:destination="@id/weeklySchedule" />
+    </fragment>
+    <fragment
+        android:id="@+id/weeklySchedule"
+        android:name="edu.arimanius.inator.fragment.schedule.WeeklySchedule"
+        android:label="@string/weekly_schedule_label"
+        tools:layout="@layout/fragment_weekly_schedule" >
+        <action
+            android:id="@+id/action_weeklySchedule_to_courseList"
+            app:destination="@id/courseList" />
+    </fragment>
+</navigation>

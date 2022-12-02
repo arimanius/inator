@@ -28,6 +28,6 @@ data class GroupSchedule (
     val courseId: Int,
     val semesterId: Int,
     val dayOfWeek: DayOfWeek,
-    val startTime: Date,
-    val endTime: Date,
+    val start: Double,
+    val end: Double,
 )

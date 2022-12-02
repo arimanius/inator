@@ -27,5 +27,5 @@ data class Group(
     val instructorId: Int,
     val capacity: Int,
     val info: String,
-    val finalExamDate: Date,
+    val finalExamDate: String?,
 )

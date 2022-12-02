@@ -5,10 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteDatabase
 import edu.arimanius.inator.data.dao.*
 import edu.arimanius.inator.data.entity.*
+import edu.arimanius.inator.data.prepopulate.RoomCallback
 import edu.arimanius.inator.util.EnumConverter
 import edu.arimanius.inator.util.TimestampConverter
+import java.security.Provider
 import java.time.DayOfWeek
 
 class DayOfWeekConverter : EnumConverter<DayOfWeek>()
@@ -51,7 +54,7 @@ abstract class InatorDatabase : RoomDatabase() {
                     context.applicationContext,
                     InatorDatabase::class.java,
                     "inator_database"
-                ).build().also { instance = it }
+                ).addCallback(RoomCallback(context)).build().also { instance = it }
             }
         }
     }
