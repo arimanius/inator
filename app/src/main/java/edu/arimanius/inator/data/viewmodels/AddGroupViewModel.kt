@@ -26,11 +26,15 @@ class AddGroupViewModel(
         courseDao = InatorDatabase.getInstance(application).courseDao()
     }
 
+    suspend fun groupExistsInProgram(programId: Int, groupId: Int, courseId: Int, semesterId: Int): Boolean {
+        return programGroupDao.groupExistsInProgram(programId, groupId, courseId, semesterId)
+    }
+
     suspend fun addGroupToProgram(programId: Int, groupId: Int, courseId: Int, semesterId: Int) {
         val programGroups = programGroupDao.getProgramGroups(programId)
         val newSchedules = groupScheduleDao.getGroupSchedules(groupId, courseId, semesterId)
         val newGroup = groupDao.getGroup(groupId, courseId, semesterId)
-        if (programGroupDao.groupExistsInProgram(programId, groupId, courseId, semesterId)) {
+        if (groupExistsInProgram(programId, groupId, courseId, semesterId)) {
             Toast.makeText(
                 getApplication(),
                 "این گروه در برنامه شما وجود دارد",
