@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -35,6 +36,12 @@ class AddCourseGroupDialog : DialogFragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_group)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        addGroupViewModel.getCourse(courseId!!, semesterId!!).observe(viewLifecycleOwner) {
+            view.findViewById<TextView>(R.id.tv_course_name).text = it.name
+            view.findViewById<TextView>(R.id.tv_course_unit).text = it.units.toString()
+
+        }
 
         addGroupViewModel.getGroups(courseId!!, semesterId!!)
             .observe(viewLifecycleOwner) { groups ->
