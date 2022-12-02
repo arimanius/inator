@@ -47,6 +47,10 @@ class AddGroupViewModel(
         programGroupDao.insert(ProgramGroup(programId, groupId, courseId, semesterId))
     }
 
+    suspend fun deleteGroupFromProgram(programId: Int, groupId: Int, courseId: Int, semesterId: Int) {
+        programGroupDao.delete(programId, groupId, courseId, semesterId)
+    }
+
     fun getCourse(courseId: Int, semesterId: Int): LiveData<Course> {
         return courseDao.getCourse(courseId, semesterId)
     }

@@ -1,6 +1,7 @@
 package edu.arimanius.inator.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Query
 import edu.arimanius.inator.data.entity.*
 
@@ -24,4 +25,12 @@ interface ProgramGroupDao : InsertableDao<ProgramGroup> {
         courseId: Int,
         semesterId: Int
     ): Boolean
+
+    @Delete(entity = ProgramGroup::class)
+    suspend fun delete(
+        programId: Int,
+        groupId: Int,
+        courseId: Int,
+        semesterId: Int
+    )
 }
