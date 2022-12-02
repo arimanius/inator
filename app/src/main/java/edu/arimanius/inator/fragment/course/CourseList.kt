@@ -57,10 +57,6 @@ class CourseList : Fragment(), AdapterView.OnItemSelectedListener {
         }
         dropdown.onItemSelectedListener = this
 
-        view.findViewById<FloatingActionButton>(R.id.fab_add_program).setOnClickListener {
-            findNavController().navigate(R.id.action_courseList_to_addProgram)
-        }
-
         return view
     }
 

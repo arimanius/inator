@@ -35,7 +35,7 @@ class AddProgram : Fragment() {
         }
 
         view.findViewById<Button>(R.id.btn_cancel_add_program).setOnClickListener {
-            findNavController().navigate(R.id.action_addProgram_to_courseList)
+            findNavController().navigate(R.id.action_addProgram_to_weeklySchedule)
         }
 
         return view
@@ -46,7 +46,7 @@ class AddProgram : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 addProgramViewModel.addProgram(name, 14011)
-                findNavController().navigate(R.id.action_addProgram_to_courseList)
+                findNavController().navigate(R.id.action_addProgram_to_weeklySchedule)
             } catch (e: SQLiteConstraintException) {
                 Toast.makeText(
                     requireContext(),

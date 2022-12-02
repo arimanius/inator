@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_courseList_to_weeklySchedule"
             app:destination="@id/weeklySchedule" />
-        <action
-            android:id="@+id/action_courseList_to_addProgram"
-            app:destination="@id/addProgram" />
     </fragment>
     <fragment
         android:id="@+id/weeklySchedule"
@@ -25,6 +22,9 @@
         <action
             android:id="@+id/action_weeklySchedule_to_courseList"
             app:destination="@id/courseList" />
+        <action
+            android:id="@+id/action_weeklySchedule_to_addProgram"
+            app:destination="@id/addProgram" />
     </fragment>
     <fragment
         android:id="@+id/addProgram"
@@ -32,7 +32,7 @@
         android:label="fragment_add_program"
         tools:layout="@layout/fragment_add_program" >
         <action
-            android:id="@+id/action_addProgram_to_courseList"
-            app:destination="@id/courseList" />
+            android:id="@+id/action_addProgram_to_weeklySchedule"
+            app:destination="@id/weeklySchedule" />
     </fragment>
 </navigation>

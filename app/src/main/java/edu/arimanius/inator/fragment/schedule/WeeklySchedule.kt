@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import edu.arimanius.inator.R
 import edu.arimanius.inator.data.viewmodels.ProgramWeeklyScheduleViewModel
 
@@ -48,6 +49,10 @@ class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
             dropdown.adapter = adapter
         }
         dropdown.onItemSelectedListener = this
+
+        view.findViewById<FloatingActionButton>(R.id.fab_add_program).setOnClickListener {
+            findNavController().navigate(R.id.action_weeklySchedule_to_addProgram)
+        }
 
         return view
     }
