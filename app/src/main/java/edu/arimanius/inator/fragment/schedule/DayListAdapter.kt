@@ -8,10 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.arimanius.inator.R
+import edu.arimanius.inator.data.viewmodels.ProgramWeeklyScheduleViewModel
 import edu.arimanius.inator.util.toPersian
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 
-class DayListAdapter(val context: Context) : RecyclerView.Adapter<DayListAdapter.DayViewHolder>() {
+class DayListAdapter(
+    private val programWeeklyScheduleViewModel: ProgramWeeklyScheduleViewModel,
+    private val context: Context,
+) : RecyclerView.Adapter<DayListAdapter.DayViewHolder>() {
 
     private var dayList = listOf(
         DayOfWeek.SATURDAY,
@@ -40,8 +47,13 @@ class DayListAdapter(val context: Context) : RecyclerView.Adapter<DayListAdapter
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // TODO("Set data")
+        CoroutineScope(Dispatchers.Main).launch {
+            programWeeklyScheduleViewModel.getProgramSchedule(1, currentItem).let {
+                adapter.setData(it)
+            }
+        }
     }
+
 
     override fun getItemCount(): Int {
         return dayList.size

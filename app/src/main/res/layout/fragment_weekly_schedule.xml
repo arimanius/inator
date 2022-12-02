@@ -7,13 +7,26 @@
     android:layoutDirection="rtl"
     tools:context=".fragment.schedule.WeeklySchedule">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_week"
+    <Button
+        android:id="@+id/btn_course_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:text="@string/course_list"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_week"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_course_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

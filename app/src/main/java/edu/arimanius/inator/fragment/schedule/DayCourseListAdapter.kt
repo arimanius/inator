@@ -20,7 +20,7 @@ class DayCourseListAdapter(val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayCourseViewHolder {
         return DayCourseViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.course_row, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.day_course_row, parent, false)
         )
     }
 

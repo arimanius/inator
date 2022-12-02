@@ -10,7 +10,7 @@
     <Button
         android:id="@+id/btn_weekly_schedule"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:backgroundTint="@color/cardview_dark_background"
         android:text="@string/weekly_schedule"
         android:textColor="@color/white"
@@ -22,7 +22,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_courses"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

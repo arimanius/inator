@@ -21,7 +21,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_day"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="72dp"
         app:layout_constraintStart_toEndOf="@id/tv_day_name"
         app:layout_constraintTop_toTopOf="parent"
