@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.arimanius.inator.R
-import edu.arimanius.inator.data.CourseViewModel
+import edu.arimanius.inator.data.viewmodels.CourseViewModel
 
 class CourseList : Fragment() {
 
@@ -28,10 +27,10 @@ class CourseList : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        courseViewModel = ViewModelProvider(this).get(CourseViewModel::class.java)
-        courseViewModel.allCourses.observe(viewLifecycleOwner, Observer{ courses ->
+        courseViewModel = ViewModelProvider(this)[CourseViewModel::class.java]
+        courseViewModel.allCourses.observe(viewLifecycleOwner) { courses ->
             adapter.setData(courses)
-        })
+        }
 
         return view
     }

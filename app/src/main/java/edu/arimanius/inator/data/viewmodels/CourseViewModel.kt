@@ -1,8 +1,9 @@
-package edu.arimanius.inator.data
+package edu.arimanius.inator.data.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import edu.arimanius.inator.data.InatorDatabase
 import edu.arimanius.inator.data.dao.CourseDao
 import edu.arimanius.inator.data.entity.Course
 
