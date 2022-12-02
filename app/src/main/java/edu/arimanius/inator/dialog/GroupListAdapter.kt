@@ -1,6 +1,5 @@
 package edu.arimanius.inator.dialog
 
-import android.database.sqlite.SQLiteConstraintException
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import edu.arimanius.inator.R
 import edu.arimanius.inator.data.dao.GroupWithInstructor
 import edu.arimanius.inator.data.entity.GroupSchedule
 import edu.arimanius.inator.data.viewmodels.AddGroupViewModel
+import edu.arimanius.inator.data.viewmodels.ProgramWeeklyScheduleViewModel
 import edu.arimanius.inator.util.toPersian
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class GroupListAdapter(
     private val addGroupViewModel: AddGroupViewModel,
-    private val programId: Int,
+    private val programWeeklyScheduleViewModel: ProgramWeeklyScheduleViewModel,
 ) : RecyclerView.Adapter<GroupListAdapter.GroupViewHolder>() {
 
     private var groupList = emptyList<Pair<GroupWithInstructor, List<GroupSchedule>>>()
@@ -56,16 +56,46 @@ class GroupListAdapter(
         holder.itemView.findViewById<Button>(R.id.btn_add).setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 addGroupViewModel.addGroupToProgram(
-                    programId,
+                    programWeeklyScheduleViewModel.selectedProgramId,
                     currentItem.group.groupId,
                     currentItem.group.courseId,
                     currentItem.group.semesterId
                 )
-                // run on looper thread
                 if (it is Button) {
-                    it.isEnabled = false
-                    it.text = "اضافه شد"
+                    it.visibility = View.GONE
+                    holder.itemView.findViewById<Button>(R.id.btn_delete).visibility = View.VISIBLE
                 }
+            }
+        }
+
+        holder.itemView.findViewById<Button>(R.id.btn_delete).setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                addGroupViewModel.deleteGroupFromProgram(
+                    programWeeklyScheduleViewModel.selectedProgramId,
+                    currentItem.group.groupId,
+                    currentItem.group.courseId,
+                    currentItem.group.semesterId
+                )
+                if (it is Button) {
+                    it.visibility = View.GONE
+                    holder.itemView.findViewById<Button>(R.id.btn_add).visibility = View.VISIBLE
+                }
+            }
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            if (addGroupViewModel.groupExistsInProgram(
+                    programWeeklyScheduleViewModel.selectedProgramId,
+                    currentItem.group.groupId,
+                    currentItem.group.courseId,
+                    currentItem.group.semesterId
+                )
+            ) {
+                holder.itemView.findViewById<Button>(R.id.btn_add).visibility = View.GONE
+                holder.itemView.findViewById<Button>(R.id.btn_delete).visibility = View.VISIBLE
+            } else {
+                holder.itemView.findViewById<Button>(R.id.btn_add).visibility = View.VISIBLE
+                holder.itemView.findViewById<Button>(R.id.btn_delete).visibility = View.GONE
             }
         }
     }

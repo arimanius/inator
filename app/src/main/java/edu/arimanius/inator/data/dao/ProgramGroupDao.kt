@@ -26,7 +26,7 @@ interface ProgramGroupDao : InsertableDao<ProgramGroup> {
         semesterId: Int
     ): Boolean
 
-    @Delete(entity = ProgramGroup::class)
+    @Query("DELETE FROM program_groups WHERE programId = :programId AND groupId = :groupId AND courseId = :courseId AND semesterId = :semesterId")
     suspend fun delete(
         programId: Int,
         groupId: Int,

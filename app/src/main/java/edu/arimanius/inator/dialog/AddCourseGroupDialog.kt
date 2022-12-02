@@ -15,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.arimanius.inator.R
 import edu.arimanius.inator.data.InatorDatabase
 import edu.arimanius.inator.data.viewmodels.AddGroupViewModel
+import edu.arimanius.inator.data.viewmodels.ProgramWeeklyScheduleViewModel
 import kotlinx.coroutines.runBlocking
 
 class AddCourseGroupDialog : DialogFragment() {
     private lateinit var addGroupViewModel: AddGroupViewModel
+    private lateinit var programWeeklyScheduleViewModel: ProgramWeeklyScheduleViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,12 +29,13 @@ class AddCourseGroupDialog : DialogFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.add_group_dialog, container, false)
         addGroupViewModel = ViewModelProvider(this)[AddGroupViewModel::class.java]
+        programWeeklyScheduleViewModel = ViewModelProvider(requireActivity())[ProgramWeeklyScheduleViewModel::class.java]
 
         val bundle = arguments
         val courseId = bundle?.getInt("courseId")
         val semesterId = bundle?.getInt("semesterId")
 
-        val adapter = GroupListAdapter(addGroupViewModel, 1)
+        val adapter = GroupListAdapter(addGroupViewModel, programWeeklyScheduleViewModel)
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_group)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
