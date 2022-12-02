@@ -30,6 +30,14 @@ class AddGroupViewModel(
         val programGroups = programGroupDao.getProgramGroups(programId)
         val newSchedules = groupScheduleDao.getGroupSchedules(groupId, courseId, semesterId)
         val newGroup = groupDao.getGroup(groupId, courseId, semesterId)
+        if (programGroupDao.groupExistsInProgram(programId, groupId, courseId, semesterId)) {
+            Toast.makeText(
+                getApplication(),
+                "این گروه در برنامه شما وجود دارد",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
         validateSchedules(programGroups, newSchedules)
         validateFinalExam(programGroups, newGroup)
         programGroupDao.insert(ProgramGroup(programId, groupId, courseId, semesterId))

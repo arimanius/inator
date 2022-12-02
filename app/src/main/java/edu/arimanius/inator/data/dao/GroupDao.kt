@@ -1,10 +1,7 @@
 package edu.arimanius.inator.data.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Embedded
-import androidx.room.Query
-import androidx.room.Relation
+import androidx.room.*
 import edu.arimanius.inator.data.entity.Group
 import edu.arimanius.inator.data.entity.Instructor
 
@@ -28,6 +25,7 @@ interface GroupDao : InsertableDao<Group> {
     )
     suspend fun getGroup(groupId: Int, courseId: Int, semesterId: Int): Group
 
+    @Transaction
     @Query(
         "SELECT * FROM groups " +
                 "WHERE courseId = :courseId " +
