@@ -38,9 +38,9 @@ interface GroupDao : InsertableDao<Group> {
                 "ON groups.groupId = group_schedules.groupId " +
                 "AND groups.courseId = group_schedules.courseId " +
                 "AND groups.semesterId = group_schedules.semesterId " +
-                "WHERE courseId = :courseId AND semesterId = :semesterId"
+                "WHERE groups.courseId = :courseId AND groups.semesterId = :semesterId"
     )
-    suspend fun getGroupsWithInstructorAndSchedules(
+    fun getGroupsWithInstructorAndSchedules(
         courseId: Int,
         semesterId: Int
     ): LiveData<List<GroupWithInstructorAndSchedules>>
