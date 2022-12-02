@@ -3,7 +3,6 @@ package edu.arimanius.inator.data.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import java.util.Date
 
 @Entity(
     tableName = "groups",
@@ -15,9 +14,16 @@ import java.util.Date
             childColumns = ["courseId", "semesterId"],
             onDelete = ForeignKey.CASCADE,
         ),
+        ForeignKey(
+            entity = Instructor::class,
+            parentColumns = ["id"],
+            childColumns = ["instructorId"],
+            onDelete = ForeignKey.CASCADE,
+        ),
     ],
     indices = [
         Index(value = ["courseId", "semesterId"]),
+        Index(value = ["instructorId"]),
     ],
 )
 data class Group(
