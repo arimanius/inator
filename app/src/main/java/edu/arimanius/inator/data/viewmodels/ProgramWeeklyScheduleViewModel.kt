@@ -43,11 +43,10 @@ class ProgramWeeklyScheduleViewModel(
                 programGroup.groupId,
                 programGroup.courseId,
                 programGroup.semesterId
-            ).filter {
-                it.dayOfWeek == dayOfWeek
-            }
+            ).filter { it.dayOfWeek == dayOfWeek }
         }.filter { it.second.isNotEmpty() }
             .map { it.first to it.second.single() }
+            .sortedWith(compareBy({ it.second.start }, { it.second.end }))
     }
 
     fun selectProgram(programName: String) {
