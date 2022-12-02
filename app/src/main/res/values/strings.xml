@@ -10,4 +10,5 @@
     <string name="class_time">زمان کلاس</string>
     <string name="add_group">اضافه کردن</string>
     <string name="remove_group">حذف کردن</string>
+    <string name="weekly_schedule">برنامه هفتگی</string>
 </resources>

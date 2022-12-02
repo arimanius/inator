@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import edu.arimanius.inator.MainActivity
 import edu.arimanius.inator.R
@@ -28,6 +27,8 @@ class CourseListAdapter(val context: Context) : RecyclerView.Adapter<CourseListA
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val currentItem = courseList[position]
         holder.itemView.findViewById<TextView>(R.id.tv_course_name).text = currentItem.name
+        holder.itemView.findViewById<TextView>(R.id.tv_course_id).text = currentItem.courseId.toString()
+
         if (context is MainActivity) {
             holder.itemView.setOnClickListener {
                 val groupDialog = AddCourseGroupDialog()

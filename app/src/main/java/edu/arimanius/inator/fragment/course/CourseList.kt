@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.arimanius.inator.R
@@ -30,6 +32,11 @@ class CourseList : Fragment() {
         courseViewModel = ViewModelProvider(this)[CourseViewModel::class.java]
         courseViewModel.allCourses.observe(viewLifecycleOwner) { courses ->
             adapter.setData(courses)
+        }
+
+        view.findViewById<Button>(R.id.btn_weekly_schedule).setOnClickListener {
+            // nav to weekly schedule
+            findNavController().navigate(R.id.action_courseList_to_weeklySchedule)
         }
 
         return view
