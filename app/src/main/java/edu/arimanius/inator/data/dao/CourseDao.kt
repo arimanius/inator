@@ -9,4 +9,7 @@ import edu.arimanius.inator.data.entity.Course
 interface CourseDao: InsertableDao<Course> {
     @Query("SELECT * FROM courses")
     fun getAllCourses(): LiveData<List<Course>>
+
+    @Query("SELECT * FROM courses WHERE courseId = :courseId AND semesterId = :semesterId")
+    fun getCourse(courseId: Int, semesterId: Int): LiveData<Course>
 }

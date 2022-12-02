@@ -5,10 +5,8 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import edu.arimanius.inator.data.InatorDatabase
-import edu.arimanius.inator.data.dao.GroupDao
-import edu.arimanius.inator.data.dao.GroupScheduleDao
-import edu.arimanius.inator.data.dao.GroupWithInstructor
-import edu.arimanius.inator.data.dao.ProgramGroupDao
+import edu.arimanius.inator.data.dao.*
+import edu.arimanius.inator.data.entity.Course
 import edu.arimanius.inator.data.entity.Group
 import edu.arimanius.inator.data.entity.GroupSchedule
 import edu.arimanius.inator.data.entity.ProgramGroup
@@ -19,11 +17,13 @@ class AddGroupViewModel(
     private val programGroupDao: ProgramGroupDao
     private val groupScheduleDao: GroupScheduleDao
     private val groupDao: GroupDao
+    private val courseDao: CourseDao
 
     init {
         programGroupDao = InatorDatabase.getInstance(application).programGroupDao()
         groupScheduleDao = InatorDatabase.getInstance(application).groupScheduleDao()
         groupDao = InatorDatabase.getInstance(application).groupDao()
+        courseDao = InatorDatabase.getInstance(application).courseDao()
     }
 
     suspend fun addGroupToProgram(programId: Int, groupId: Int, courseId: Int, semesterId: Int) {
@@ -41,6 +41,10 @@ class AddGroupViewModel(
         validateSchedules(programGroups, newSchedules)
         validateFinalExam(programGroups, newGroup)
         programGroupDao.insert(ProgramGroup(programId, groupId, courseId, semesterId))
+    }
+
+    fun getCourse(courseId: Int, semesterId: Int): LiveData<Course> {
+        return courseDao.getCourse(courseId, semesterId)
     }
 
     private suspend fun validateFinalExam(
