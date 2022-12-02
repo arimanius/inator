@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_courseList_to_weeklySchedule"
             app:destination="@id/weeklySchedule" />
+        <action
+            android:id="@+id/action_courseList_to_addProgram"
+            app:destination="@id/addProgram" />
     </fragment>
     <fragment
         android:id="@+id/weeklySchedule"
@@ -21,6 +24,15 @@
         tools:layout="@layout/fragment_weekly_schedule" >
         <action
             android:id="@+id/action_weeklySchedule_to_courseList"
+            app:destination="@id/courseList" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProgram"
+        android:name="edu.arimanius.inator.fragment.program.AddProgram"
+        android:label="fragment_add_program"
+        tools:layout="@layout/fragment_add_program" >
+        <action
+            android:id="@+id/action_addProgram_to_courseList"
             app:destination="@id/courseList" />
     </fragment>
 </navigation>

@@ -12,5 +12,9 @@
     <string name="remove_group">حذف کردن</string>
     <string name="weekly_schedule">برنامه هفتگی</string>
     <string name="course_list">لیست دروس</string>
+    <string name="program_name">نام برنامه</string>
+    <string name="add_program">ساخت برنامه</string>
+    <string name="add_new_program">اضافه کردن برنامه جدید</string>
     <string name="delete_group">حذف کردن</string>
+    <string name="cancel">لغو</string>
 </resources>

@@ -1,8 +1,6 @@
 package edu.arimanius.inator.data.viewmodels
 
 import android.app.Application
-import android.database.sqlite.SQLiteConstraintException
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import edu.arimanius.inator.data.InatorDatabase
 import edu.arimanius.inator.data.dao.ProgramDao
@@ -18,14 +16,6 @@ class AddProgramViewModel(
     }
 
     suspend fun addProgram(name: String, semesterId: Int) {
-        try {
-            programDao.insert(Program(0, name, semesterId))
-        } catch (e: SQLiteConstraintException) {
-            Toast.makeText(
-                getApplication(),
-                "برنامه ای با این نام در این ترم وجود دارد",
-                Toast.LENGTH_LONG
-            ).show()
-        }
+        programDao.insert(Program(0, name, semesterId))
     }
 }
