@@ -34,10 +34,10 @@ interface GroupDao : InsertableDao<Group> {
     @Query(
         "SELECT * FROM groups " +
                 "INNER JOIN instructors ON groups.instructorId = instructors.id " +
-                "INNER JOIN group_schedules " +
-                "ON groups.groupId = group_schedules.groupId " +
-                "AND groups.courseId = group_schedules.courseId " +
-                "AND groups.semesterId = group_schedules.semesterId " +
+                "INNER JOIN group_schedules as schedules " +
+                "ON groups.groupId = schedules.groupId " +
+                "AND groups.courseId = schedules.courseId " +
+                "AND groups.semesterId = schedules.semesterId " +
                 "WHERE groups.courseId = :courseId AND groups.semesterId = :semesterId"
     )
     fun getGroupsWithInstructorAndSchedules(
