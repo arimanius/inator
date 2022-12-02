@@ -58,4 +58,8 @@ class DayListAdapter(
     override fun getItemCount(): Int {
         return dayList.size
     }
+
+    fun notifyUpdate() {
+        notifyDataSetChanged()
+    }
 }

@@ -20,6 +20,7 @@ import edu.arimanius.inator.data.viewmodels.ProgramWeeklyScheduleViewModel
 class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var programWeeklyScheduleViewModel: ProgramWeeklyScheduleViewModel
+    private lateinit var adapter: DayListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +31,7 @@ class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
 
         programWeeklyScheduleViewModel = ViewModelProvider(this)[ProgramWeeklyScheduleViewModel::class.java]
 
-        val adapter = DayListAdapter(programWeeklyScheduleViewModel, requireContext())
+        adapter = DayListAdapter(programWeeklyScheduleViewModel, requireContext())
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_week)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -60,6 +61,7 @@ class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         parent?.getItemAtPosition(position).let {
             programWeeklyScheduleViewModel.selectProgram(it as String)
+            adapter.notifyUpdate()
         }
     }
 
