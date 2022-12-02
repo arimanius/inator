@@ -90,4 +90,12 @@ class AddGroupViewModel(
     ): LiveData<List<GroupWithInstructor>> {
         return groupDao.getGroupsWithInstructor(courseId, semesterId)
     }
+
+    suspend fun getGroupSchedules(
+        groupId: Int,
+        courseId: Int,
+        semesterId: Int
+    ): List<GroupSchedule> {
+        return groupScheduleDao.getGroupSchedules(groupId, courseId, semesterId)
+    }
 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.arimanius.inator.R
 import edu.arimanius.inator.data.InatorDatabase
 import edu.arimanius.inator.data.viewmodels.AddGroupViewModel
+import kotlinx.coroutines.runBlocking
 
 class AddCourseGroupDialog : DialogFragment() {
     private lateinit var addGroupViewModel: AddGroupViewModel
@@ -24,20 +25,24 @@ class AddCourseGroupDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_group_dialog, container, false)
+        addGroupViewModel = ViewModelProvider(this)[AddGroupViewModel::class.java]
 
         val bundle = arguments
         val courseId = bundle?.getInt("courseId")
         val semesterId = bundle?.getInt("semesterId")
 
-        val adapter = GroupListAdapter()
+        val adapter = GroupListAdapter(addGroupViewModel, 1)
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_group)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        addGroupViewModel = ViewModelProvider(this)[AddGroupViewModel::class.java]
-        addGroupViewModel.getGroups(courseId!!, semesterId!!).observe(viewLifecycleOwner) { groups ->
-            adapter.setData(groups)
-        }
+        addGroupViewModel.getGroups(courseId!!, semesterId!!)
+            .observe(viewLifecycleOwner) { groups ->
+                val groupsWithSchedule = groups.map { group ->
+                    group to runBlocking { addGroupViewModel.getGroupSchedules(group.group.groupId, courseId, semesterId) }
+                }
+                adapter.setData(groupsWithSchedule)
+            }
 
         return view
     }

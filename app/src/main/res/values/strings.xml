@@ -9,4 +9,5 @@
     <string name="exam_time">زمان امتحان</string>
     <string name="class_time">زمان کلاس</string>
     <string name="add_group">اضافه کردن</string>
+    <string name="remove_group">حذف کردن</string>
 </resources>
