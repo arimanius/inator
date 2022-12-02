@@ -12,4 +12,8 @@ interface CourseDao: InsertableDao<Course> {
 
     @Query("SELECT * FROM courses WHERE courseId = :courseId AND semesterId = :semesterId")
     fun getCourse(courseId: Int, semesterId: Int): LiveData<Course>
+
+    @Query("SELECT * FROM courses WHERE courseId = :courseId AND semesterId = :semesterId")
+    suspend fun suspendedGetCourse(courseId: Int, semesterId: Int): Course
+
 }
