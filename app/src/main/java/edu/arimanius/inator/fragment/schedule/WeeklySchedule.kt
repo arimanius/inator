@@ -40,11 +40,11 @@ class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         val dropdown = view.findViewById<Spinner>(R.id.s_program)
-        programWeeklyScheduleViewModel.programs.observe(viewLifecycleOwner) {
+        programWeeklyScheduleViewModel.programs.observe(viewLifecycleOwner) { programs ->
             val adapter = ArrayAdapter(
                 requireContext(),
                 android.R.layout.simple_spinner_dropdown_item,
-                it.map { it.name })
+                programs.map { it.name })
             dropdown.adapter = adapter
         }
         dropdown.onItemSelectedListener = this

@@ -34,7 +34,7 @@ class RoomCallback(private val context: Context) : RoomDatabase.Callback() {
         programDao.insert(Program(0, "پیش فرض", semester))
 
         val departments = listOf(
-            Triple(R.raw.computer, "مهندسی کامپویتر", 38),
+            Triple(R.raw.computer, "مهندسی کامپیوتر", 38),
             Triple(R.raw.math, "علوم ریاضی", 3),
             Triple(R.raw.physics, "فیزیک", 5),
         )
