@@ -6,19 +6,16 @@ import androidx.room.Embedded
 import androidx.room.Query
 import androidx.room.Relation
 import edu.arimanius.inator.data.entity.Group
-import edu.arimanius.inator.data.entity.GroupSchedule
 import edu.arimanius.inator.data.entity.Instructor
 
-data class GroupWithInstructorAndSchedules(
+data class GroupWithInstructor(
     @Embedded
     val group: Group,
-    @Embedded
-    val instructor: Instructor,
     @Relation(
-        parentColumn = "id",
-        entityColumn = "instructorId",
+        parentColumn = "instructorId",
+        entityColumn = "id",
     )
-    val schedules: List<GroupSchedule>
+    val instructor: Instructor,
 )
 
 @Dao
@@ -33,15 +30,11 @@ interface GroupDao : InsertableDao<Group> {
 
     @Query(
         "SELECT * FROM groups " +
-                "INNER JOIN instructors ON groups.instructorId = instructors.id " +
-                "INNER JOIN group_schedules as schedules " +
-                "ON groups.groupId = schedules.groupId " +
-                "AND groups.courseId = schedules.courseId " +
-                "AND groups.semesterId = schedules.semesterId " +
-                "WHERE groups.courseId = :courseId AND groups.semesterId = :semesterId"
+                "WHERE courseId = :courseId " +
+                "AND semesterId = :semesterId"
     )
-    fun getGroupsWithInstructorAndSchedules(
+    fun getGroupsWithInstructor(
         courseId: Int,
         semesterId: Int
-    ): LiveData<List<GroupWithInstructorAndSchedules>>
+    ): LiveData<List<GroupWithInstructor>>
 }

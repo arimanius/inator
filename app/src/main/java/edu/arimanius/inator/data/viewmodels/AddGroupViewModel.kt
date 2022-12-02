@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import edu.arimanius.inator.data.InatorDatabase
 import edu.arimanius.inator.data.dao.GroupDao
 import edu.arimanius.inator.data.dao.GroupScheduleDao
-import edu.arimanius.inator.data.dao.GroupWithInstructorAndSchedules
+import edu.arimanius.inator.data.dao.GroupWithInstructor
 import edu.arimanius.inator.data.dao.ProgramGroupDao
 import edu.arimanius.inator.data.entity.Group
 import edu.arimanius.inator.data.entity.GroupSchedule
@@ -84,10 +84,10 @@ class AddGroupViewModel(
         }
     }
 
-    suspend fun getGroups(
+    fun getGroups(
         courseId: Int,
         semesterId: Int
-    ): LiveData<List<GroupWithInstructorAndSchedules>> {
-        return groupDao.getGroupsWithInstructorAndSchedules(courseId, semesterId)
+    ): LiveData<List<GroupWithInstructor>> {
+        return groupDao.getGroupsWithInstructor(courseId, semesterId)
     }
 }
