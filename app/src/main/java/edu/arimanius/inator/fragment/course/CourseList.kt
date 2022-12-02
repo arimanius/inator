@@ -22,7 +22,7 @@ class CourseList : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_course_list, container, false)
 
-        val adapter = CourseListAdapter()
+        val adapter = CourseListAdapter(requireContext())
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_courses)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())

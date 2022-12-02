@@ -49,7 +49,7 @@ class AddGroupViewModel(
                 Toast.makeText(
                     getApplication(),
                     "زمان امتحان نهایی گروه های انتخابی شما با هم تداخل دارد",
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_LONG
                 ).show()
                 break
             }
@@ -75,7 +75,7 @@ class AddGroupViewModel(
                         Toast.makeText(
                             getApplication(),
                             "در این زمان، گروه دیگری در برنامه شما وجود دارد",
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_LONG
                         ).show()
                         break@outer
                     }

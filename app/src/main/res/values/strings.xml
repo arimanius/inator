@@ -2,4 +2,11 @@
     <string name="app_name">ایناتور</string>
     <string name="course_list_label">لیست دروس</string>
     <string name="weekly_schedule_label">برنامه هفتگی</string>
+    <string name="group">گروه</string>
+    <string name="instructor">استاد</string>
+    <string name="info">توضیحات</string>
+    <string name="capacity">ظرفیت</string>
+    <string name="exam_time">زمان امتحان</string>
+    <string name="class_time">زمان کلاس</string>
+    <string name="add_group">اضافه کردن</string>
 </resources>
