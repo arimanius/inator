@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import edu.arimanius.inator.MainActivity
 import edu.arimanius.inator.R
 import edu.arimanius.inator.data.viewmodels.AddProgramViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -28,7 +29,7 @@ class AddProgram : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_program, container, false)
 
-        addProgramViewModel = ViewModelProvider(this)[AddProgramViewModel::class.java]
+        addProgramViewModel = ViewModelProvider(activity as MainActivity)[AddProgramViewModel::class.java]
 
         view.findViewById<Button>(R.id.btn_add_program).setOnClickListener {
             insertProgram()

@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import edu.arimanius.inator.MainActivity
 import edu.arimanius.inator.R
 import edu.arimanius.inator.data.viewmodels.ProgramWeeklyScheduleViewModel
 
@@ -29,7 +30,7 @@ class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_weekly_schedule, container, false)
 
-        programWeeklyScheduleViewModel = ViewModelProvider(this)[ProgramWeeklyScheduleViewModel::class.java]
+        programWeeklyScheduleViewModel = ViewModelProvider(activity as MainActivity)[ProgramWeeklyScheduleViewModel::class.java]
 
         adapter = DayListAdapter(programWeeklyScheduleViewModel, requireContext())
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_week)
@@ -48,6 +49,7 @@ class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
                 android.R.layout.simple_spinner_dropdown_item,
                 programs.map { it.name })
             dropdown.adapter = adapter
+            dropdown.setSelection(programWeeklyScheduleViewModel.selectedProgramIndex)
         }
         dropdown.onItemSelectedListener = this
 
@@ -61,6 +63,7 @@ class WeeklySchedule : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         parent?.getItemAtPosition(position).let {
             programWeeklyScheduleViewModel.selectProgram(it as String)
+            programWeeklyScheduleViewModel.selectedProgramIndex = position
             adapter.notifyUpdate()
         }
     }

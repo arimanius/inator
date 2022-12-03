@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import edu.arimanius.inator.MainActivity
 import edu.arimanius.inator.R
 import edu.arimanius.inator.data.InatorDatabase
 import edu.arimanius.inator.data.viewmodels.AddGroupViewModel
@@ -28,7 +29,7 @@ class AddCourseGroupDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.add_group_dialog, container, false)
-        addGroupViewModel = ViewModelProvider(this)[AddGroupViewModel::class.java]
+        addGroupViewModel = ViewModelProvider(activity as MainActivity)[AddGroupViewModel::class.java]
         programWeeklyScheduleViewModel = ViewModelProvider(requireActivity())[ProgramWeeklyScheduleViewModel::class.java]
 
         val bundle = arguments

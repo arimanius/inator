@@ -23,6 +23,7 @@ class ProgramWeeklyScheduleViewModel(
 
     val programs: LiveData<List<Program>>
     var selectedProgramId: Int = 1
+    var selectedProgramIndex: Int = 0
 
     init {
         programDao = InatorDatabase.getInstance(application).programDao()

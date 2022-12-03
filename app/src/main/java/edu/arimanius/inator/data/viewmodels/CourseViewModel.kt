@@ -18,6 +18,7 @@ class CourseViewModel(
 ) : AndroidViewModel(application) {
     val departments: LiveData<List<Department>>
     var courses: LiveData<List<Course>>
+    var selectedDepartmentIndex: Int = 0
 
     private val departmentDao: DepartmentDao
     private val courseDao: CourseDao

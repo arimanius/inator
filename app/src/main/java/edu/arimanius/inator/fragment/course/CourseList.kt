@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import edu.arimanius.inator.MainActivity
 import edu.arimanius.inator.R
 import edu.arimanius.inator.data.viewmodels.CourseViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -37,7 +38,7 @@ class CourseList : Fragment(), AdapterView.OnItemSelectedListener {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        courseViewModel = ViewModelProvider(this)[CourseViewModel::class.java]
+        courseViewModel = ViewModelProvider(activity as MainActivity)[CourseViewModel::class.java]
         courseViewModel.courses.observe(viewLifecycleOwner) { courses ->
             adapter.setData(courses)
         }
@@ -54,6 +55,8 @@ class CourseList : Fragment(), AdapterView.OnItemSelectedListener {
                 android.R.layout.simple_spinner_dropdown_item,
                 departments.map { it.name })
             dropdown.adapter = adapter
+
+            dropdown.setSelection(courseViewModel.selectedDepartmentIndex)
         }
         dropdown.onItemSelectedListener = this
 
@@ -67,6 +70,7 @@ class CourseList : Fragment(), AdapterView.OnItemSelectedListener {
                 courseViewModel.courses.observe(viewLifecycleOwner) { courses ->
                     adapter.setData(courses)
                 }
+                courseViewModel.selectedDepartmentIndex = position
             }
         }
     }
